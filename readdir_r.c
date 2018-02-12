@@ -34,8 +34,7 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result);
 #include <unistd.h>
 #include <stddef.h>
 #include <string.h>
-	struct dirent *entry = NULL;
-	struct dirent *result = NULL;
+	struct dirent *entry = NULL, *result = NULL;
 	int name_max = 0, len = 0;
 	name_max = pathconf("/mnt/h/", _PC_NAME_MAX);
 	if (name_max == -1)         /* Limit not defined, or error */
@@ -58,8 +57,7 @@ int readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result);
 		}
 	}
 #else
-	struct dirent entry = {.d_name[0] = 0};
-	struct dirent *result = NULL;
+	struct dirent entry = {.d_name[0] = 0}, *result = NULL;
 	int ret = 0;
 	while (1)
 	{
