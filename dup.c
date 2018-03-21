@@ -27,8 +27,20 @@ int main(void)
 	}
 #endif
 	fprintf(stdout, "fd1 :%d, fd2 :%d\n", fd1, fd2);
-	write(fd1, "1", strlen("1"));
-	write(fd2, "2", strlen("2"));
+	if (-1 == write(fd1, "1", strlen("1"))) {
+		fprintf(stderr, "write error :%m\n");
+		exit(EXIT_FAILURE);
+	}
+	if (-1 == write(fd2, "2", strlen("2"))) {
+		fprintf(stderr, "write error :%m\n");
+		exit(EXIT_FAILURE);
+	}
+#if 1	/* fsync func test */
+	if (-1 == fsync(fd1)) {
+		fprintf(stderr, "fsync error :%m\n");
+		exit(EXIT_FAILURE);
+	}
+#endif
 	system("cat dup.txt");
 	if (-1 == fd1) {
 		close(fd1);
