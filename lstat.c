@@ -1,8 +1,11 @@
 #if 0
-zhangly@ubuntu:/mnt/data/gitstorage/apue$ ./a.out link_1.txt 1.txt /dev/sda8 
-S_ISLNK
-S_ISREG
-S_ISBLK
+zhangly@ubuntu:/mnt/data/gitstorage/apue$ ./a.out /etc/tty
+/dev/log /dev/console link_1.txt 
+lstat /etc/tty
+/etc/tty unknown file type
+/dev/log S_ISSOCK
+/dev/console S_ISCHR
+link_1.txt S_ISLNK
 #endif
 #include <stdio.h>
 #include <sys/types.h>
@@ -34,7 +37,7 @@ int main(int argc, char *argv[])
 			ptr = "S_ISSOCK";
 		else
 			ptr = "unknown file type";
-		fprintf(stdout, "%s\n", ptr);
+		fprintf(stdout, "%s %s\n", argv[i], ptr);
 	}
 	return 0;
 }
