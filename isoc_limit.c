@@ -7,8 +7,21 @@ int main(void)
 		char *string;
 		long long value;
 	} limits[] = {
+#ifdef NOT_DEFINED_TEST
+		{"NOT_DEFINED_TEST", NOT_DEFINED_TEST},
+#else
+		{"NOT_DEFINED_TEST is not defined", 0},
+#endif
+#ifdef CHAR_BIT
 		{"CHAR_BIT", CHAR_BIT},
+#else
+		{"CHAR_BIT is not defined", 0},
+#endif
+#ifdef CHAR_MAX
 		{"CHAR_MAX", CHAR_MAX},
+#else
+		{"CHAR_MAX is not defined", 0},
+#endif
 		{"CHAR_MIN", CHAR_MIN},
 		{"SCHAR_MAX", SCHAR_MAX},
 		{"SCHAR_MIN", SCHAR_MIN},
