@@ -16,6 +16,7 @@ void print_mode(int fd, char *file)
 		goto out;
 	}
 	fprintf(stdout, "file %s mode:%o\n", file, buf.st_mode);
+	fprintf(stdout, "%s The file's S_ISREG(m) %d\n", file, S_ISREG(buf.st_mode));
 out:
 	return;
 
@@ -53,6 +54,7 @@ int main(void)
 	print_mode(fd2, szfile2);
 
 	fprintf(stdout, "after change:\n");
+
 #if 1
 	chmod(szfile1, S_IRUSR);
 	print_mode(fd1, szfile1);
